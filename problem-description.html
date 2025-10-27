@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Problem Description | Saibai Island Water & Sanitation Project</title>
+
+  <style>
+    :root{--brand:#004d40;--brand-2:#00796b;--bg:#f7faf9;--ink:#1f2937}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    header{background:var(--brand);color:#fff;position:sticky;top:0;z-index:999}
+    nav ul{margin:0;padding:0;display:flex;align-items:center;list-style:none}
+    nav li{position:relative}
+    nav a{display:block;padding:14px 18px;color:#fff;text-decoration:none;font-weight:600}
+    nav li:hover>a{background:var(--brand-2)}
+    .dropdown-content{display:none;position:absolute;background:var(--brand);min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .dropdown-content a{padding:12px 14px;display:block;font-weight:500}
+    nav li:hover>.dropdown-content{display:block}
+    .sub-dropdown{position:relative}
+    .sub-dropdown-content{display:none;position:absolute;left:220px;top:0;background:#00695c;min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .sub-dropdown:hover .sub-dropdown-content{display:block}
+    .hero{background:linear-gradient(135deg,rgba(0,77,64,.88),rgba(0,121,107,.72)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;color:#fff;padding:70px 24px;text-align:center}
+    .hero h1{margin:0 0 10px;font-size:32px}
+    .breadcrumb{font-size:14px;opacity:.9}
+    .breadcrumb a{color:#b2dfdb;text-decoration:none}.breadcrumb .sep{margin:0 .4rem;opacity:.7}
+    main{max-width:1100px;margin:40px auto;padding:0 18px 60px}
+    section{background:#fff;border-radius:14px;padding:30px;margin-bottom:26px;box-shadow:0 10px 22px rgba(0,0,0,.08)}
+    .callout{border-left:4px solid var(--brand-2);background:#ecfffd;padding:14px 16px;border-radius:8px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:#fff;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.08);padding:22px;border:1px solid #e7f3f2;transition:.25s;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(0,0,0,.16)}
+    .card h3{margin:0 0 8px;color:var(--brand)}
+    footer{background:var(--brand);color:#fff;text-align:center;padding:18px;font-size:14px}
+    
+    .content-section {
+      line-height: 1.7;
+    }
+    
+    .content-section h2 {
+      color: var(--brand);
+      margin-top: 30px;
+      margin-bottom: 20px;
+      border-bottom: 2px solid var(--brand-2);
+      padding-bottom: 8px;
+    }
+    
+    .content-section h3 {
+      color: var(--brand-2);
+      margin-top: 25px;
+      margin-bottom: 12px;
+    }
+    
+    .content-section p {
+      margin-bottom: 18px;
+    }
+    
+    .problem-statement {
+      background: #F0F9F8;
+      border-radius: 10px;
+      padding: 25px;
+      margin: 25px 0;
+      border-left: 6px solid #00796B;
+    }
+    
+    .criteria-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+      gap: 25px;
+      margin: 30px 0;
+    }
+    
+    .criterion-card {
+      background: #f0f9f8;
+      border-radius: 12px;
+      padding: 25px;
+      border-top: 4px solid var(--brand-2);
+      transition: transform 0.3s ease;
+    }
+    
+    .criterion-card:hover {
+      transform: translateY(-5px);
+    }
+    
+    .criterion-card h4 {
+      color: var(--brand);
+      margin-top: 0;
+      margin-bottom: 15px;
+      font-size: 1.3rem;
+    }
+    
+    .criterion-number {
+      display: inline-block;
+      background: var(--brand);
+      color: white;
+      width: 30px;
+      height: 30px;
+      border-radius: 50%;
+      text-align: center;
+      line-height: 30px;
+      margin-right: 10px;
+      font-weight: bold;
+    }
+    
+    .key-point {
+      background: #e8f5f3;
+      border-radius: 8px;
+      padding: 15px;
+      margin: 15px 0;
+      border-left: 4px solid #004d40;
+    }
+    
+    .reference {
+      font-style: italic;
+      color: #666;
+      margin-top: 15px;
+      font-size: 0.9em;
+      border-top: 1px solid #e0e0e0;
+      padding-top: 10px;
+    }
+    
+    .impact-list {
+      background: #f5f5f5;
+      border-radius: 8px;
+      padding: 20px;
+      margin: 20px 0;
+    }
+    
+    .impact-list ul {
+      padding-left: 20px;
+    }
+    
+    .impact-list li {
+      margin-bottom: 10px;
+    }
+  </style>
+
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+
+      <li>
+        <a href="#">Research</a>
+        <div class="dropdown-content">
+          <a href="background.html">Background</a>
+          <a href="problem-description.html">Problem Description</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Design</a>
+        <div class="dropdown-content">
+          <div class="sub-dropdown">
+            <a href="design-options.html">Design Solution Option ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="solution1.html">Solution 1</a>
+              <a href="solution2.html">Solution 2</a>
+              <a href="solution3.html">Solution 3</a>
+            </div>
+          </div>
+          <div class="sub-dropdown">
+            <a href="design-selection.html">Design Selection ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="selectionA.html">Solution A</a>
+              <a href="selectionB.html">Solution B</a>
+              <a href="selectionC.html">Solution C</a>
+            </div>
+          </div>
+          <a href="detaileddesign.html">Detailed Design</a>
+          <a href="prototype.html">Prototype</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Execution</a>
+        <div class="dropdown-content">
+          <a href="implementation.html">Implementation Plan</a>
+          <a href="cost.html">Cost Analysis</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Insights</a>
+        <div class="dropdown-content">
+          <a href="other.html">Other Considerations</a>
+          <a href="recommend.html">Recommendations</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Problem Description</h1>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> <span class="sep">›</span> Research › Problem Description
+  </div>
+</div>
+
+<main>
+  <section class="content-section">
+    <section class="problem-section">
+      <h2>Problem Description</h2>
+      <div class="problem-card">
+        <p><strong>Saibai Island requires a reliable and sustainable water system that maintains turbidity below 1 NTU to ensure safe drinking water and protect community health (EWB Challenge, 2025).</strong></p>
+        
+        <p>Located in the north-western Torres Strait, Saibai Island faces ongoing water issues made worse by climate change. Rainwater tanks and lagoon catchments often show turbidity between 1 and 2 NTU, above the limit set by the Torres Strait Island Regional Council (n.d.).</p>
+
+        <p>Because freshwater access is limited, residents depend on transported water and diesel desalination. These options are costly, difficult to maintain, and environmentally unsustainable. A simple, low-cost, and energy-efficient system is needed to provide safe, consistent, and locally managed water for the island (EWB Challenge, 2025).</p>
+      </div>
+    </section>
+   
+    <h2>Design Criteria</h2>
+    <p>The design criteria below guide the selection of a suitable water management system for Saibai Island, ensuring it meets community needs and TSIRC standards.</p>
+
+    <div class="criteria-grid">
+      <div class="criterion-card">
+        <h4><span class="criterion-number">1</span> Water Quality and Safety</h4>
+        <p>The system must maintain turbidity below 1 NTU to ensure clean, safe water while reducing contamination and disease risks.</p>
+        <div class="reference">
+          Maintaining low turbidity improves water safety and public health (EWB Challenge, 2025).
+        </div>
+      </div>
+
+      <div class="criterion-card">
+        <h4><span class="criterion-number">2</span> Economic Feasibility and Simplicity</h4>
+        <p>The design should be affordable, easy to maintain, and use durable materials suitable for Saibai’s remote environment.</p>
+        <div class="reference">
+          Cost-effective systems support community self-management and long-term sustainability (Torres Strait Island Regional Council, n.d.).
+        </div>
+      </div>
+
+      <div class="criterion-card">
+        <h4><span class="criterion-number">3</span> Reliability and Resilience</h4>
+        <p>The system must perform well under all weather conditions, providing year-round safe water for residents.</p>
+        <div class="reference">
+          A resilient design ensures continuous water access and community wellbeing (EWB Challenge, 2025).
+        </div>
+      </div>
+    </div>
+
+    <div class="key-point">
+      <strong>Goal:</strong> To develop a sustainable, affordable, and community-managed water system that provides safe and reliable access to clean water for Saibai Island residents.
+    </div>
+
+  </section>
+</main>
+
+
+
+<footer>© 2025 Aaron.Group 1.2.1 —— Alternative water harvesting Assessment 3</footer></body>
+</html>

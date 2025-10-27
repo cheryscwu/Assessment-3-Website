@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Recommendations | Saibai Island Water & Sanitation Project</title>
+  <style>
+    :root{
+      --brand:#004d40;--brand-2:#00796b;--bg:#f7faf9;--ink:#1f2937;--muted:#6b7280;
+      --light:#f0fdfa;--card-shadow:0 8px 20px rgba(0,0,0,.08);--card-hover:0 16px 32px rgba(0,0,0,.16);
+      --ok:#10b981;--warn:#f59e0b;--info:#0284c7;
+    }
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+
+    header{background:var(--brand);color:#fff;position:sticky;top:0;z-index:999}
+    nav ul{margin:0;padding:0;display:flex;align-items:center;list-style:none}
+    nav li{position:relative}
+    nav a{display:block;padding:14px 18px;color:#fff;text-decoration:none;font-weight:600}
+    nav li:hover>a{background:var(--brand-2)}
+    .dropdown-content{display:none;position:absolute;background:var(--brand);min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .dropdown-content a{padding:12px 14px;display:block;font-weight:500}
+    nav li:hover>.dropdown-content{display:block}
+    .sub-dropdown{position:relative}
+    .sub-dropdown-content{display:none;position:absolute;left:220px;top:0;background:#00695c;min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .sub-dropdown:hover .sub-dropdown-content{display:block}
+
+    .hero{
+      background:linear-gradient(135deg,rgba(0,77,64,.88),rgba(0,121,107,.72)),
+               url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;
+      color:#fff;padding:70px 24px;text-align:center;position:relative;overflow:hidden
+    }
+    .hero h1{margin:0 0 10px;font-size:32px}
+    .breadcrumb{font-size:14px;opacity:.9}
+    .breadcrumb a{color:#b2dfdb;text-decoration:none}.breadcrumb .sep{margin:0 .4rem;opacity:.7}
+
+    main{max-width:1100px;margin:40px auto;padding:0 18px 80px}
+    section{background:#fff;border-radius:14px;padding:30px;margin-bottom:26px;box-shadow:var(--card-shadow)}
+    h2{color:var(--brand);margin-top:10px;margin-bottom:18px;border-bottom:2px solid var(--brand-2);padding-bottom:8px}
+    h3{color:var(--brand-2);margin:18px 0 10px}
+
+    .kpis{display:flex;gap:12px;flex-wrap:wrap;margin-top:14px}
+    .kpi{display:flex;align-items:center;gap:8px;background:var(--light);border:1px solid #c7f5ee;border-radius:999px;padding:8px 12px;font-weight:600;box-shadow:0 2px 6px rgba(0,0,0,.06)}
+    .kpi svg{width:18px;height:18px}
+
+    .grid{display:grid;grid-template-columns:repeat(12,1fr);gap:18px}
+    .card{grid-column:span 6;background:#fff;border:1px solid #e7f6f3;border-radius:14px;padding:18px 18px 16px;box-shadow:var(--card-shadow);transition:transform .25s ease, box-shadow .25s ease}
+    .card:hover{transform:translateY(-4px);box-shadow:var(--card-hover)}
+    .card .tag{display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:700;color:#0f766e;background:#e0f2f1;border-radius:999px;padding:6px 10px;margin-bottom:10px}
+    .card h3{margin:8px 0 6px}
+    .card p{margin:0 0 10px;line-height:1.6}
+    .card ul{margin:8px 0 0 18px}
+    .card li{margin:6px 0}
+
+    .callout{border-left:4px solid var(--brand-2);background:#ecfffd;padding:14px 16px;border-radius:8px;margin:20px 0}
+    .prose{font-size:1.02rem;line-height:1.7}
+    .prose p{margin:0 0 1rem}
+
+    .timeline{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;margin-top:12px}
+    .step{background:#f8fafc;border:1px dashed #d1fae5;border-radius:12px;padding:14px 12px}
+    .step strong{display:block;margin-bottom:6px}
+    .progress{height:7px;background:#e5e7eb;border-radius:999px;overflow:hidden;margin-top:8px}
+    .progress>span{display:block;height:100%;background:linear-gradient(90deg,#34d399,#10b981);width:0%}
+
+    details{background:#f9fffe;border:1px solid #def7f3;border-radius:12px;padding:14px 16px}
+    details[open]{box-shadow:0 6px 16px rgba(0,0,0,.06)}
+    summary{cursor:pointer;font-weight:700;color:#065f46}
+
+    footer{background:var(--brand);color:#fff;text-align:center;padding:18px;font-size:14px;margin-top:30px}
+
+    .reveal{opacity:0;transform:translateY(12px);transition:opacity .6s ease,transform .6s ease}
+    .reveal.in{opacity:1;transform:none}
+
+    @media (max-width:900px){
+      .card{grid-column:span 12}
+      .timeline{grid-template-columns:repeat(2,1fr)}
+    }
+    @media (max-width:640px){
+      nav ul{flex-direction:column}
+      .dropdown-content,.sub-dropdown-content{position:static;width:100%;box-shadow:none}
+      .sub-dropdown-content{background:rgba(0,0,0,.1)}
+      .hero{padding:50px 20px}
+      section{padding:20px}
+      .timeline{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li>
+        <a href="#">Research</a>
+        <div class="dropdown-content">
+          <a href="background.html">Background</a>
+          <a href="problem-description.html">Problem Description</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Design</a>
+        <div class="dropdown-content">
+          <div class="sub-dropdown">
+            <a href="design-options.html">Design Solution Option ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="solution1.html">Solution 1</a>
+              <a href="solution2.html">Solution 2</a>
+              <a href="solution3.html">Solution 3</a>
+            </div>
+          </div>
+          <div class="sub-dropdown">
+            <a href="design-selection.html">Design Selection ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="selectionA.html">Solution A</a>
+              <a href="selectionB.html">Solution B</a>
+              <a href="selectionC.html">Solution C</a>
+            </div>
+          </div>
+          <a href="detaileddesign.html">Detailed Design</a>
+          <a href="prototype.html">Prototype</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Execution</a>
+        <div class="dropdown-content">
+          <a href="implementation.html">Implementation Plan</a>
+          <a href="cost.html">Cost Analysis</a>
+        </div>
+      </li>
+      <li>
+        <a href="#">Insights</a>
+        <div class="dropdown-content">
+          <a href="other.html">Other Considerations</a>
+          <a href="recommend.html">Recommendations</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Recommendations</h1>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> <span class="sep">›</span> Insights › Recommendations
+  </div>
+</div>
+
+<main>
+  <section class="reveal">
+    <h2>Targets We Commit To</h2>
+    <div class="kpis">
+      <div class="kpi" title="Turbidity target">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 3l7 4v5c0 5-3.5 9-7 9s-7-4-7-9V7l7-4z"/><path d="M9 12l2 2 4-4"/></svg>
+        <span>Turbidity &lt; 1 NTU</span>
+      </div>
+      <div class="kpi" title="UV uptime objective">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="4"/><path d="M12 2v2M12 20v2M4 12H2M22 12h-2M5 5l1.5 1.5M17.5 17.5 19 19M19 5l-1.5 1.5M6.5 17.5 5 19"/></svg>
+        <span>UV uptime ≥ 98%</span>
+      </div>
+      <div class="kpi" title="Spare parts buffer">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 8l-9-5-9 5 9 5 9-5z"/><path d="M12 13v9"/><path d="M3 8v9l9 5 9-5V8"/></svg>
+        <span>Buffer stock 3–6 months</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>What We Recommend — Summary</h2>
+    <div class="grid">
+      <div class="card">
+        <span class="tag">Reliability</span>
+        <h3>Keep a modest buffer of essentials</h3>
+        <p>Filter cartridges, activated carbon, and UV lamps ensure smooth operation between supply runs.</p>
+        <ul>
+          <li>Maintain 3–6 months of critical spares.</li>
+          <li>Agree alternates with suppliers in advance.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Maintenance</span>
+        <h3>Simple, pictorial SOP & schedule</h3>
+        <p>Clear steps make timely filter changes and fixes possible without specialist dependence.</p>
+        <ul>
+          <li>One-page pictorial SOP + weekly/monthly checklist.</li>
+          <li>Quick troubleshooting flow (5 steps).</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Transparency</span>
+        <h3>Make water quality visible</h3>
+        <p>Basic turbidity meter + small on-site display build trust and support the &lt; 1 NTU target.</p>
+        <ul>
+          <li>Show latest turbidity at the tank.</li>
+          <li>Use a simple green/amber UV status light.</li>
+        </ul>
+      </div>
+      <div class="card">
+        <span class="tag">Commissioning</span>
+        <h3>Local fine-tuning, then scale</h3>
+        <p>Verify UV dose & contact time; estimate filter life using local water data for confident OPEX planning.</p>
+        <ul>
+          <li>Check UVT, lamp aging, sleeve fouling on-site.</li>
+          <li>Predict replacement intervals and costs.</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="callout">
+      These steps are standard optimisation practices that build on our design’s strengths and make rollout smoother.
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2>Full Rationale</h2>
+    <details>
+      <summary>Show the exact text used in our recommendations</summary>
+      <div class="prose" style="margin-top:12px">
+        <p>To <strong>lock in reliability</strong> in a remote setting, maintain a <strong>modest buffer</strong> of essential replacements—filter cartridges, activated carbon, and UV lamps. This is <strong>standard practice</strong> that keeps the system running smoothly between supply runs.</p>
+
+        <p>Adopt a <strong>simple, pictorial maintenance guide and schedule</strong> with clear steps for planning and quick troubleshooting. This helps ensure <strong>timely filter changes</strong> and routine upkeep <strong>without specialist dependence</strong>.</p>
+
+        <p>Enhance <strong>water-quality monitoring</strong> with a basic turbidity meter and a small on-site display of the latest reading. Making quality <strong>visible</strong> strengthens community trust and supports the <strong>&lt; 1 NTU</strong> target.</p>
+
+        <p>As part of <strong>commissioning and local fine-tuning</strong> (not because of any design issue), verify <strong>UV dose and contact time</strong> under local conditions (e.g., UV transmittance, lamp aging, sleeve fouling) to confirm pathogen inactivation margins. Use local water data to <strong>estimate filter life</strong> so replacement intervals and costs are planned with confidence.</p>
+      </div>
+    </details>
+  </section>
+</main>
+
+<footer>© 2025 Aaron.Group 1.2.1 —— Alternative water harvesting Assessment 3</footer><script>
+  const obs=new IntersectionObserver(entries=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){e.target.classList.add('in');obs.unobserve(e.target);}
+    });
+  },{threshold:.12});
+  document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>

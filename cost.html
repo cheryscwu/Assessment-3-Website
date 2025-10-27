@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Cost Analysis | Saibai Island Water & Sanitation Project</title>
+
+  <style>
+    :root{--brand:#004d40;--brand-2:#00796b;--bg:#f7faf9;--ink:#1f2937}
+    html{scroll-behavior:smooth}
+    body{margin:0;font-family:"Segoe UI",system-ui,-apple-system,Arial,sans-serif;background:var(--bg);color:var(--ink)}
+    header{background:var(--brand);color:#fff;position:sticky;top:0;z-index:999}
+    nav ul{margin:0;padding:0;display:flex;align-items:center;list-style:none}
+    nav li{position:relative}
+    nav a{display:block;padding:14px 18px;color:#fff;text-decoration:none;font-weight:600}
+    nav li:hover>a{background:var(--brand-2)}
+    .dropdown-content{display:none;position:absolute;background:var(--brand);min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .dropdown-content a{padding:12px 14px;display:block;font-weight:500}
+    nav li:hover>.dropdown-content{display:block}
+    .sub-dropdown{position:relative}
+    .sub-dropdown-content{display:none;position:absolute;left:220px;top:0;background:#00695c;min-width:220px;box-shadow:0 6px 18px rgba(0,0,0,.18)}
+    .sub-dropdown:hover .sub-dropdown-content{display:block}
+    .hero{background:linear-gradient(135deg,rgba(0,77,64,.88),rgba(0,121,107,.72)),url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e?q=80&w=1600&auto=format&fit=crop') center/cover no-repeat;color:#fff;padding:70px 24px;text-align:center}
+    .hero h1{margin:0 0 10px;font-size:32px}
+    .breadcrumb{font-size:14px;opacity:.9}
+    .breadcrumb a{color:#b2dfdb;text-decoration:none}.breadcrumb .sep{margin:0 .4rem;opacity:.7}
+    main{max-width:1100px;margin:40px auto;padding:0 18px 60px}
+    section{background:#fff;border-radius:14px;padding:30px;margin-bottom:26px;box-shadow:0 10px 22px rgba(0,0,0,.08)}
+    .callout{border-left:4px solid var(--brand-2);background:#ecfffd;padding:14px 16px;border-radius:8px}
+    .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:20px}
+    .card{background:#fff;border-radius:14px;box-shadow:0 10px 22px rgba(0,0,0,.08);padding:22px;border:1px solid #e7f3f2;transition:.25s;cursor:pointer}
+    .card:hover{transform:translateY(-6px);box-shadow:0 14px 28px rgba(0,0,0,.16)}
+    .card h3{margin:0 0 8px;color:var(--brand)}
+    footer{background:var(--brand);color:#fff;text-align:center;padding:18px;font-size:14px}
+    
+    .cost-summary {display: flex; justify-content: space-between; margin-bottom: 30px; flex-wrap: wrap;}
+    .cost-card {flex: 1; min-width: 250px; margin: 10px; background: #f0f7f6; padding: 20px; border-radius: 10px; text-align: center; box-shadow: 0 4px 8px rgba(0,0,0,0.1);}
+    .cost-card h3 {margin-top: 0; color: var(--brand);}
+    .cost-card .amount {font-size: 24px; font-weight: bold; color: var(--brand-2); margin: 10px 0;}
+    .cost-card .note {font-size: 14px; color: #666;}
+    
+    .cost-tables {display: flex; gap: 20px; flex-wrap: wrap; margin-bottom: 30px;}
+    .cost-table-container {flex: 1; min-width: 300px;}
+    .cost-table {width: 100%; border-collapse: collapse; margin-top: 15px;}
+    .cost-table th {background-color: var(--brand); color: white; padding: 12px 15px; text-align: left;}
+    .cost-table td {padding: 12px 15px; border-bottom: 1px solid #e0e0e0;}
+    .cost-table tr:last-child td {border-bottom: none;}
+    .cost-table tr:hover {background-color: #f5f5f5;}
+    .cost-table .total-row {font-weight: bold; background-color: #e8f5f3;}
+    
+    .comparison-chart {margin: 40px 0; padding: 20px; background: #f9f9f9; border-radius: 10px;}
+    .chart-container {height: 300px; margin-top: 20px; position: relative;}
+    .bar {position: absolute; bottom: 0; background-color: var(--brand-2); border-radius: 4px 4px 0 0; transition: height 0.5s ease;}
+    .bar-label {position: absolute; bottom: -25px; left: 0; right: 0; text-align: center; font-size: 12px;}
+    
+    .analysis-content {line-height: 1.6;}
+    .analysis-content p {margin-bottom: 16px;}
+    
+    @media (max-width: 768px) {
+      .cost-summary, .cost-tables {flex-direction: column;}
+      .cost-card {margin: 10px 0;}
+    }
+
+.comparison-chart{background:#fff;border-radius:14px;padding:30px;box-shadow:0 10px 22px rgba(0,0,0,.08)}
+.chart-container{
+  position:relative;
+  padding:24px 16px 56px 56px;
+  border:1px solid #e7f3f2;border-radius:16px;
+  background:linear-gradient(180deg,#f7fbfa,#f9fbfb);
+  box-shadow:0 8px 18px rgba(0,0,0,.06);
+  min-height: 440px;
+}
+
+.chart-grid{
+  position:absolute; inset:24px 16px 56px 56px;
+  background-image:linear-gradient(to top, rgba(31,41,55,.08) 1px, transparent 1px);
+  background-size:100% 20%;
+  pointer-events:none;
+  border-left:2px solid rgba(31,41,55,.15);
+}
+.y-ticks{
+  position:absolute; left:8px; right:auto;
+  top:24px; bottom:56px;
+  display:flex; flex-direction:column; justify-content:space-between;
+  font-size:12px; color:#6b7280; pointer-events:none;
+}
+
+.bars{
+  position:relative; z-index:1;
+  display:flex; align-items:flex-end;
+  gap:clamp(24px,6vw,64px); min-height:320px; padding-top:12px;
+  height: 360px;
+}
+.bar{
+  position:relative;
+  width:clamp(48px,7.6vw,88px);
+  border-radius:12px;
+  background:var(--brand);
+  box-shadow:0 8px 18px rgba(0,0,0,.12), inset 0 -14px 18px rgba(255,255,255,.25);
+  transform-origin:bottom; transition:transform .25s ease, filter .25s ease;
+}
+.bar:nth-child(2){background:var(--brand-2)}
+.bar:nth-child(3){background:#4db6ac}
+.bar:hover{transform:translateY(-6px);filter:brightness(1.05)}
+
+.bar .value{
+  position:absolute; bottom:calc(100% + 10px); left:50%; transform:translateX(-50%);
+  font-weight:800; color:var(--ink); background:#fff; border:1px solid #e7f3f2;
+  padding:6px 10px; border-radius:999px; box-shadow:0 6px 16px rgba(0,0,0,.08);
+  white-space:nowrap;
+}
+.bar .x-label{
+  position:absolute; top:calc(100% + 14px); left:50%; transform:translateX(-50%);
+  width:max-content; max-width:160px; text-align:center; font-size:13px; color:#374151;
+}
+
+.chart-legend{display:flex; gap:16px; align-items:center; margin-top:18px; flex-wrap:wrap}
+.chart-legend li{list-style:none; display:flex; align-items:center; gap:8px; color:#374151; font-size:13px}
+.chart-legend i{display:inline-block; width:14px; height:14px; border-radius:4px}
+
+  </style>
+
+</head>
+<body>
+
+<header>
+  <nav>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+
+      <li>
+        <a href="#">Research</a>
+        <div class="dropdown-content">
+          <a href="background.html">Background</a>
+          <a href="problem-description.html">Problem Description</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Design</a>
+        <div class="dropdown-content">
+          <div class="sub-dropdown">
+            <a href="design-options.html">Design Solution Option ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="solution1.html">Solution 1</a>
+              <a href="solution2.html">Solution 2</a>
+              <a href="solution3.html">Solution 3</a>
+            </div>
+          </div>
+          <div class="sub-dropdown">
+            <a href="design-selection.html">Design Selection ▸</a>
+            <div class="sub-dropdown-content">
+              <a href="selectionA.html">Solution A</a>
+              <a href="selectionB.html">Solution B</a>
+              <a href="selectionC.html">Solution C</a>
+            </div>
+          </div>
+          <a href="detaileddesign.html">Detailed Design</a>
+          <a href="prototype.html">Prototype</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Execution</a>
+        <div class="dropdown-content">
+          <a href="implementation.html">Implementation Plan</a>
+          <a href="cost.html">Cost Analysis</a>
+        </div>
+      </li>
+
+      <li>
+        <a href="#">Insights</a>
+        <div class="dropdown-content">
+          <a href="other.html">Other Considerations</a>
+          <a href="recommend.html">Recommendations</a>
+        </div>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<div class="hero">
+  <h1>Cost Analysis</h1>
+  <div class="breadcrumb">
+    <a href="index.html">Home</a> <span class="sep">›</span> Execution › Cost Analysis
+  </div>
+</div>
+<main>
+
+<section>
+  <h2>Cost Overview</h2>
+  <p>This analysis outlines the costs associated with implementing the water harvesting and filtration system for Saibai Island, demonstrating its economic viability and long-term sustainability.</p>
+  
+  <div class="cost-summary">
+    <div class="cost-card">
+      <h3>Unpotable water</h3>
+      <div class="amount">$335 AUD</div>
+      <div class="note">Per household (Rainwater)</div>
+    </div>
+
+    <div class="cost-card">
+      <h3>Potable water</h3>
+      <div class="amount">$1327 AUD</div>
+      <div class="note">Lagoon water filtration1 system</div>
+    </div>
+
+    <div class="cost-card">
+      <h3>Monthly Maintenance</h3>
+      <div class="amount">~$100 AUD</div>
+      <div class="note">Per household (materials + Labor)</div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Component Costs</h2>
+  <div class="cost-tables">
+    <div class="cost-table-container">
+      <h3>Household Rainwater Collection System</h3>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Price (AUD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Household Water tank (400L)</td>
+            <td>$210</td>
+          </tr>
+          <tr>
+            <td>Rain Gutter</td>
+            <td>$8/meter</td>
+          </tr>
+          <tr>
+            <td>Downspout</td>
+            <td>$22.5/meter</td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>Total per family</strong></td>
+            <td><strong>$335</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+    
+    <div class="cost-table-container">
+      <h3>Water Filtration System</h3>
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Component</th>
+            <th>Price (AUD)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Water Container (500L)</td>
+            <td>$1,140</td>
+          </tr>
+          <tr>
+            <td>5-micron filter</td>
+            <td>$11 each</td>
+          </tr>
+          <tr>
+            <td>1-micron filter</td>
+            <td>$6 each</td>
+          </tr>
+          <tr>
+            <td>UV sterilizer (55w)</td>
+            <td>$120</td>
+          </tr>
+          <tr>
+            <td>Active carbon</td>
+            <td>$50/kg</td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>Total price</strong></td>
+            <td><strong>$1,327</strong></td>
+          </tr>
+          <tr class="total-row">
+            <td><strong>Price per Islander</strong></td>
+            <td><strong>$4.4</strong></td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="comparison-chart">
+  <h2>Cost Comparison</h2>
+  <p>Visual representation of costs relative to median monthly income</p>
+
+  <div class="chart-container" id="costChart">
+    <div class="chart-grid" aria-hidden="true"></div>
+    <div class="y-ticks" id="yTicks"></div>
+    <div class="bars" id="bars"></div>
+  </div>
+
+  <ul class="chart-legend" id="chartLegend"></ul>
+</section>
+
+
+<section>
+  <h2>Economic Analysis</h2>
+  <div class="analysis-content">
+    <p>According to the census statistics in 2021, the median monthly salary is approximately 4,000 AUD, which is considerably higher than the total cost allocated per island resident (approximately 340 AUD) for this design.</p>
+    
+    <p>Among these costs, the long-term maintenance only requires staff to periodically replace consumable parts in the system, including activated carbon and filter cartridges once a month, which totally cost around 70 AUD. Therefore, even when labour costs (approximately 30 AUD per hour) are taken into account, the long-term maintenance cost of this system remains relatively low, with approximately only 100 AUD for each maintenance.</p>
+    
+    <p>Although the replacement of consumable materials and labour expenses should still be included in the overall cost assessment, these expenditures are minimal compared with those of conventional water treatment systems. As a result, the long-term maintenance cost can be considered low and economically manageable, which reflects the high cost-effectiveness of the design.</p>
+  </div>
+</section>
+
+</main>
+<footer>© 2025 Aaron.Group 1.2.1 —— Alternative water harvesting Assessment 3</footer><script>
+document.addEventListener('DOMContentLoaded', () => {
+  const barsEl   = document.getElementById('bars');
+  const ticksEl  = document.getElementById('yTicks');
+  const legendEl = document.getElementById('chartLegend');
+
+  const data = [
+    { label: 'Median Monthly Income', value: 4000, color: '#004d40' },
+    { label: 'System Cost Per Islander', value: 340,  color: '#00796b' },
+    { label: 'Monthly Maintenance',     value: 100,  color: '#4db6ac' }
+  ];
+
+  const maxRaw = Math.max(...data.map(d => d.value));
+  const maxVal = Math.max(1000, Math.ceil(maxRaw / 1000) * 1000);
+  const steps  = 5;
+  const step   = maxVal / steps;
+
+  ticksEl.innerHTML = '';
+  for (let i = steps; i >= 0; i--) {
+    const tick = document.createElement('span');
+    tick.textContent = `$${(i * step).toLocaleString()}`;
+    ticksEl.appendChild(tick);
+  }
+
+  const H = barsEl.clientHeight || 360;                  // 父容器高度（像素）
+  barsEl.innerHTML = '';
+  data.forEach((d) => {
+    const bar = document.createElement('div');
+    bar.className = 'bar';
+    bar.style.backgroundColor = d.color;
+
+    const h = Math.max(6, (d.value / maxVal) * H);       // 最少 6px，能看见
+    bar.style.height = `${h}px`;
+
+    const value = document.createElement('div');
+    value.className = 'value';
+    value.textContent = `$${d.value.toLocaleString()} AUD`;
+
+    const xl = document.createElement('div');
+    xl.className = 'x-label';
+    xl.textContent = d.label;
+
+    bar.appendChild(value);
+    bar.appendChild(xl);
+    barsEl.appendChild(bar);
+  });
+
+  legendEl.innerHTML = data.map(d =>
+    `<li><i style="background:${d.color}"></i>${d.label}</li>`
+  ).join('');
+});
+</script>
+
+
+</body>
+</html>
