@@ -94,29 +94,28 @@
   .backlink{font-size:0.9rem;margin-left:6px;color:#0d9488;text-decoration:none}
   .backlink:hover{text-decoration:underline}
 
-  /* Reveal */
+
   .reveal{opacity:0;transform:translateY(18px);transition:opacity .6s ease, transform .6s ease}
   .reveal.show{opacity:1;transform:none}
 
-  /* 让图片完整展示（不被裁切/遮盖），同时更美观 */
-  .gallery .zoom{                 /* 你的 <a class="zoom"> 已存在 */
+  
+  .gallery .zoom{                 
   display:block;
-  padding:8px;                  /* 给图片留出白边，更干净 */
+  padding:8px;                
   background:linear-gradient(180deg,rgba(255,255,255,.6),rgba(255,255,255,.3));
   border-radius:12px;
   }
 
   .gallery .zoom img{
-  width:100%;                   /* 宽度占满容器 */
-  height:auto;                  /* 按原比例等比缩放 */
-  object-fit:contain;           /* 永不裁切，完整显示 */
-  display:block;                /* 去掉行内空隙 */
-  background:#fff;              /* 透明底 PNG 也好看 */
+  width:100%;                   
+  height:auto;                  
+  object-fit:contain;          
+  display:block;                
+  background:#fff;              
   }
 
-/* 卡片本身略收边并居中，避免超宽拉伸 */
   .gallery figure{
-  max-width:900px;              /* 你也可以根据版心改成 840/960 等 */
+  max-width:900px;              
   margin-inline:auto;
   }
 </style>
